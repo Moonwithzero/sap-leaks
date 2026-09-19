@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Seguridad</title>
+    <style>
+        body {
+            background-color: #0b0b0b;
+            color: #00ff66;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            padding-top: 100px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            border: 2px solid #00ff66;
+            padding: 20px;
+            box-shadow: 0 0 20px #00ff66;
+        }
+        h1 { font-size: 24px; }
+        .ip-text {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ff3333;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>¡CONEXIÓN DETECTADA!</h1>
+        <p>Analizando paquetes de datos y dirección IP...</p>
+        <div class="ip-text" id="fakeIp">Buscando IP...</div>
+        <p id="status">Extrayendo ubicación aproximada...</p>
+    </div>
+
+    <script>
+        // Generar números aleatorios para simular una IP falsa
+        function generarIPFalsa() {
+            const n1 = Math.floor(Math.random() * 150) + 50;
+            const n2 = Math.floor(Math.random() * 200) + 10;
+            const n3 = Math.floor(Math.random() * 200) + 10;
+            const n4 = Math.floor(Math.random() * 200) + 10;
+            return `${n1}.${n2}.${n3}.${n4}`;
+        }
+
+        // Efecto de suspenso cambiando números antes de mostrar la "falsa"
+        let contador = 0;
+        const intervalo = setInterval(() => {
+            document.getElementById('fakeIp').innerText = generarIPFalsa();
+            contador++;
+            if (contador > 10) {
+                clearInterval(intervalo);
+                // IP final falsa pero convincente
+                document.getElementById('fakeIp').innerText = "IP: " + generarIPFalsa();
+                document.getElementById('status').innerText = "¡Alerta! Dispositivo localizado con éxito, JAJAJA me salio buena la pagina, soy M00N por cierto 🕵️‍♂️😂";
+            }
+        }, 200);
+    </script>
+
+</body>
+</html>
